@@ -1,0 +1,18 @@
+services: 
+  mqtt:
+    image: emqx/emqx:5.0.23
+    restart: unless-stopped
+    environment: 
+      - 'EMQX_NAME=emqx_v2'
+      - 'EMQX_AUTH__HTTP__SUPER_REQ='
+      - 'EMQX_AUTH__HTTP__SUPER_REQ__METHOD='
+      - 'EMQX_AUTH__HTTP__SUPER_REQ__PARAMS='
+      - 'EMQX_AUTH__HTTP__ACL_REQ='
+      - 'EMQX_AUTH__HTTP__ACL_REQ_METHOD='
+      - 'EMQX_AUTH__HTTP__ACL_REQ_PARAMS='
+      - 'EMQX_AUTH__HTTP__ENABLE_AUTHN_false'
+    volumes: 
+      - ./emqx/acl.conf:/opt/emqx/etc/acl.conf
+    ports: 
+      - "1883:1883"
+
